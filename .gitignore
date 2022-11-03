@@ -1,0 +1,35 @@
+# files from pdflatex and bibtex
+*.aux
+*.bbl
+*.blg
+*.spl
+*.log
+*.out
+*.synctex.gz
+
+# files from latexmk
+*.dvi
+*.fdb_latexmk
+*.fls
+
+# files for beamer
+*.nav
+*.snm
+*.toc
+
+# miscellaneous
+*.auxlock
+*.dpth
+*.md5
+*.vrb
+
+# temporary files
+_tmp_*
+
+# result files
+*.pdf
+
+# emacs temporary files
+*~
+\#*#
+*#

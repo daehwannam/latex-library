@@ -1,0 +1,86 @@
+
+% Eample .sty file
+% https://www.overleaf.com/learn/latex/Writing_your_own_package
+
+% Setting for .sty file for LaTeX
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{dhnamlib}[
+2022/11/03 My library
+]
+
+% Example of required packages
+%
+% \RequirePackage{imakeidx}
+% \RequirePackage{xstring}
+% \RequirePackage{xcolor}
+% \definecolor{greycolour}{HTML}{525252}
+% \definecolor{sharelatexcolour}{HTML}{882B21}
+% \definecolor{mybluecolour}{HTML}{394773}
+% \newcommand{\wordcolour}{greycolour}
+
+% Required packages
+\RequirePackage{xargs}
+\RequirePackage{keyval}
+\RequirePackage{tikz}
+
+\RequirePackage{tkz-base}
+\RequirePackage{tkz-euclide}
+
+% Example of options
+%
+% \DeclareOption{red}{\renewcommand{\wordcolour}{sharelatexcolour}}
+% \DeclareOption{blue}{\renewcommand{\wordcolour}{mybluecolour}}
+% \DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
+
+% The following line should be added after option setting
+% \ProcessOptions\relax
+
+%
+% Body of the package
+%
+
+%
+% tikz commands
+%
+
+% Speech bubble
+%
+% Use \callout for speech bubbles
+\usetikzlibrary{shapes.callouts}
+
+% Callout with a sharp edge
+% https://tex.stackexchange.com/a/619672
+%
+% Enable sharp edge by adding the following command:
+% \tikzset{/pgf/callout pointer sharp}
+\input{dhnamlib/calloutpointersharp}
+
+% Help grid
+% https://tex.stackexchange.com/a/621908
+%
+% e.g.
+% \begin{tikzpicture}
+%   \helpgrid[xmin=-5, xmax=5, ymin=-2, ymax=2]
+% \end{tikzpicture}
+
+
+\define@key{helpgrid}{xmin}{\def\kv@xmin{#1}}
+\define@key{helpgrid}{xmax}{\def\kv@xmax{#1}}
+\define@key{helpgrid}{ymin}{\def\kv@ymin{#1}}
+\define@key{helpgrid}{ymax}{\def\kv@ymax{#1}}
+\setkeys{helpgrid}{xmin=-5, xmax=5, ymin=-5, ymax=5}
+\newcommand{\helpgrid}[1][]{
+  \setkeys{helpgrid}{#1} % set new keys
+  \tkzInit[xmin=\kv@xmin, xmax=\kv@xmax, ymin=\kv@ymin, ymax=\kv@ymax]
+  % \tkzGrid
+
+  \tkzAxeXY[font=\tiny, line width=0.2pt, tickwd=0.4pt]
+
+  % \tkzAxeXY[font=\tiny, label={}, color=blue!40]
+  % \tkzLabelXY[font=\tiny, text=blue!40]
+
+  \draw[help lines, color=red!40, dashed, xstep=0.5cm,ystep=0.5cm] (\kv@xmin,\kv@ymin) grid (\kv@xmax,\kv@ymax);
+  \draw[ultra thin, color=black] (\kv@xmin,0)--(\kv@xmax,0) node[right]{};
+  \draw[ultra thin, color=black] (0,\kv@ymin)--(0,\kv@ymax) node[above]{};
+}
+
