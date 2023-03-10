@@ -85,3 +85,16 @@
 }
 
 \newcommand{\disablehelpgrid}{\renewcommand{\helpgrid}{}}
+
+% Radian to degree
+\def\radtodeg#1{{((#1)*180)}}
+% https://tex.stackexchange.com/a/218542
+%
+% tikz requires surrounding '{' and '}' when the expression incude '(' and ')'.
+% Therfore, \radtodeg has surrounding '{' and '}'
+
+% e.g.
+\verb|\radtodeg{2}| = \radtodeg{2}
+% https://tex.stackexchange.com/a/387691
+%
+% The expression of \verb should begins and ends the same character.
