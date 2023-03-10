@@ -87,7 +87,8 @@
 \newcommand{\disablehelpgrid}{\renewcommand{\helpgrid}{}}
 
 % Radian to degree
-\def\radtodeg#1{{((#1)*180)}}
+\newcommand{\radtodeg}[1]{{((#1)*180)}}
+% \def\radtodeg#1{{((#1)*180)}}
 % https://tex.stackexchange.com/a/218542
 %
 % tikz requires surrounding '{' and '}' when the expression incude '(' and ')'.
