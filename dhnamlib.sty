@@ -89,13 +89,17 @@
 % Radian to degree
 \newcommand{\radtodeg}[1]{{((#1)*180)}}
 % \def\radtodeg#1{{((#1)*180)}}
-% https://tex.stackexchange.com/a/218542
 %
 % tikz requires surrounding '{' and '}' when the expression incude '(' and ')'.
 % Therfore, \radtodeg has surrounding '{' and '}'
+% ( https://tex.stackexchange.com/a/218542 )
 
 % e.g.
-\verb|\radtodeg{2}| = \radtodeg{2}
-% https://tex.stackexchange.com/a/387691
+% \verb|\radtodeg{2}| = \radtodeg{2}
 %
 % The expression of \verb should begins and ends the same character.
+% ( https://tex.stackexchange.com/a/387691 )
+
+% e.g. a shortcut command
+% \newcommand{\rtd}{\radtodeg}  % a shortcut
+% \verb|\radtodeg{2}| = \radtodeg{2}
