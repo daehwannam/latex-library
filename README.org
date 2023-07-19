@@ -3,3 +3,8 @@
 #+begin_src sh
 git clone https://github.com/daehwannam/latex-library.git dhnamlib
 #+end_src
+
+* Usage
+#+begin_src latex
+\usepackage{dhnamlib/dhnamlib}
+#+end_src
