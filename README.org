@@ -1,5 +1,5 @@
 
 * Setup
 #+begin_src sh
-git clone https://github.com/daehwannam/latex-lib.git dhnamlib
+git clone https://github.com/daehwannam/latex-library.git dhnamlib
 #+end_src
