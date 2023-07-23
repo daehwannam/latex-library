@@ -43,7 +43,7 @@
 % TikZ commands
 %
 
-% Speech bubble
+% BEGIN: Speech bubble
 %
 % Use \callout for speech bubbles
 \usetikzlibrary{shapes.callouts}
@@ -54,15 +54,15 @@
 % Enable sharp edge by adding the following command:
 % \tikzset{/pgf/callout pointer sharp}
 \input{dhnamlib/calloutpointersharp}
+% END: Speech bubble
 
-% Help grid
+% BEGIN: Help grid
 % https://tex.stackexchange.com/a/621908
 %
 % e.g.
 % \begin{tikzpicture}
 %   \helpgrid[xmin=-5, xmax=5, ymin=-2, ymax=2]
 % \end{tikzpicture}
-
 
 \define@key{helpgrid}{xmin}{\def\kv@xmin{#1}}
 \define@key{helpgrid}{xmax}{\def\kv@xmax{#1}}
@@ -85,8 +85,9 @@
 }
 
 \newcommand{\disablehelpgrid}{\renewcommand{\helpgrid}{}}
+% END: Help grid
 
-% Radian to degree
+% BEGIN: Radian to degree
 \newcommand{\radtodeg}[1]{{((#1)*180)}}
 % \def\radtodeg#1{{((#1)*180)}}
 %
@@ -103,3 +104,9 @@
 % e.g. a shortcut command
 % \newcommand{\rtd}{\radtodeg}  % a shortcut
 % \verb|\radtodeg{2}| = \radtodeg{2}
+% END: Radian to degree
+
+% BEGIN: citation placeholder
+% command \citeph just ignores an input
+\newcommand{\citeph}[1]{}
+% END: \citeph
