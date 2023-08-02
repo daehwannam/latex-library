@@ -26,6 +26,9 @@
 \RequirePackage{tkz-base}
 \RequirePackage{tkz-euclide}
 
+\RequirePackage{stmaryrd}
+% stmaryrd is need to define \denotation
+
 % Example of options
 %
 % \DeclareOption{red}{\renewcommand{\wordcolour}{sharelatexcolour}}
@@ -110,3 +113,10 @@
 % command \citeph just ignores an input
 \newcommand{\citeph}[1]{}
 % END: \citeph
+
+% BEGIN: \denotation
+% https://tex.stackexchange.com/questions/121605/macro-for-typesetting-semantic-denotations-linguistics
+\newcommand{\denotation}[2][]{
+  \left\llbracket #2 \right\rrbracket_{#1}
+}
+% END: \denotation
