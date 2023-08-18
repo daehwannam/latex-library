@@ -1,5 +1,5 @@
 
-% Eample .sty file
+% Example .sty file
 % https://www.overleaf.com/learn/latex/Writing_your_own_package
 
 % Setting for .sty file for LaTeX
@@ -28,6 +28,9 @@
 
 \RequirePackage{stmaryrd}
 % stmaryrd is need to define \denotation
+
+\RequirePackage{pgffor}         % foreach
+
 
 % Example of options
 %
@@ -120,3 +123,15 @@
   \left\llbracket #2 \right\rrbracket_{#1}
 }
 % END: \denotation
+
+% BEGIN: \dotimes
+% https://tex.stackexchange.com/a/16190
+\newcommand{\dotimes}[2]{
+  \foreach \i in {1,...,#1}{#2}
+}
+% END: \dotimes
+
+% % BEGIN: \comment
+% % https://tex.stackexchange.com/a/16190
+% \newcommand{\comment}[1]{}
+% % END: \comment
