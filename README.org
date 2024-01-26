@@ -1,7 +1,10 @@
 
 * Setup
 #+begin_src sh
-git clone https://github.com/daehwannam/latex-library.git dhnamlib
+git clone https://github.com/daehwannam/latex-library.git latex-library
+BASE_DIR_PATH=path/to/base      # Change this
+PROJECT_PATH=$(realpath --relative-to="$BASE_DIR_PATH" latex-library)
+ln -s $PROJECT_PATH $BASE_DIR_PATH/dhnamlib
 #+end_src
 
 * Usage
