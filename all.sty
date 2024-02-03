@@ -1,0 +1,47 @@
+
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
+
+% Example .sty file
+% https://www.overleaf.com/learn/latex/Writing_your_own_package
+
+% Setting for .sty file for LaTeX
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{dhnamlib}[
+2022/11/03 My library
+]
+
+% Example of required packages
+%
+% \RequirePackage{imakeidx}
+% \RequirePackage{xstring}
+% \RequirePackage{xcolor}
+% \definecolor{greycolour}{HTML}{525252}
+% \definecolor{sharelatexcolour}{HTML}{882B21}
+% \definecolor{mybluecolour}{HTML}{394773}
+% \newcommand{\wordcolour}{greycolour}
+
+% Required packages
+
+% Example of options
+%
+% \DeclareOption{red}{\renewcommand{\wordcolour}{sharelatexcolour}}
+% \DeclareOption{blue}{\renewcommand{\wordcolour}{mybluecolour}}
+% \DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
+
+% The following line should be added after option setting
+% \ProcessOptions\relax
+
+%
+% Sub-packages
+%
+
+\RequirePackage{\dhnamlibpackage{tikz}}
+\RequirePackage{\dhnamlibpackage{iteration}}
+\RequirePackage{\dhnamlibpackage{nlp}}
+\RequirePackage{\dhnamlibpackage{miscellaneous}}
+\RequirePackage{\dhnamlibpackage{math}}

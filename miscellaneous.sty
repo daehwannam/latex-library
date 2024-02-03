@@ -1,0 +1,19 @@
+
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
+
+% Miscellaneous commands
+
+% BEGIN: citation placeholder
+% command \citeph just ignores an input
+\newcommand{\citeph}[1]{}
+% END: \citeph
+
+% % BEGIN: \comment
+% % https://tex.stackexchange.com/a/16190
+% \newcommand{\comment}[1]{}
+% % END: \comment

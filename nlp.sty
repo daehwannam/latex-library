@@ -1,0 +1,18 @@
+
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
+
+
+\RequirePackage{stmaryrd}       % \llbracket, \rrbracket
+
+
+% BEGIN: \denotation
+% https://tex.stackexchange.com/questions/121605/macro-for-typesetting-semantic-denotations-linguistics
+\newcommand{\denotation}[2][]{
+  \left\llbracket #2 \right\rrbracket_{#1}
+}
+% END: \denotation

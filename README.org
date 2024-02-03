@@ -9,5 +9,24 @@ ln -s $PROJECT_PATH $BASE_DIR_PATH/dhnamlib
 
 * Usage
 #+begin_src latex
-\usepackage{dhnamlib/dhnamlib}
+\usepackage{dhnamlib/all}
+#+end_src
+
+** Change the package path
+The default package path is "dhnamlib/"
+You can change the path by defining ~\dhnamlibpath~ before importing the dhnamlib package
+
+#+begin_src latex
+% Using the default package path
+\renewcommand{\dhnamlibpath}{dhnamlib/}
+\usepackage{dhnamlib/all}
+
+% Renaming ./dhnamlib to ./path/to/newdir
+\renewcommand{\dhnamlibpath}{path/to/newdir/}
+\usepackage{newpath/all}
+
+% Locating all files in the current directory (./),
+% then adding the prefix "dhnamlib-" to the all files
+\renewcommand{\dhnamlibpath}{dhnamlib-}
+\usepackage{dhnamlib-all}
 #+end_src

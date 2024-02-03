@@ -1,0 +1,18 @@
+
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
+
+
+\RequirePackage{pgffor}         % foreach
+
+
+% BEGIN: \dotimes
+% https://tex.stackexchange.com/a/16190
+\newcommand{\dotimes}[2]{
+  \foreach \i in {1,...,#1}{#2}
+}
+% END: \dotimes

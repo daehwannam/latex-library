@@ -1,53 +1,17 @@
 
-% Example .sty file
-% https://www.overleaf.com/learn/latex/Writing_your_own_package
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
 
-% Setting for .sty file for LaTeX
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{dhnamlib}[
-2022/11/03 My library
-]
 
-% Example of required packages
-%
-% \RequirePackage{imakeidx}
-% \RequirePackage{xstring}
-% \RequirePackage{xcolor}
-% \definecolor{greycolour}{HTML}{525252}
-% \definecolor{sharelatexcolour}{HTML}{882B21}
-% \definecolor{mybluecolour}{HTML}{394773}
-% \newcommand{\wordcolour}{greycolour}
-
-% Required packages
+\RequirePackage{tikz}
 \RequirePackage{xargs}
 \RequirePackage{keyval}
-\RequirePackage{tikz}
-
 \RequirePackage{tkz-base}
-\RequirePackage{tkz-euclide}
-
-\RequirePackage{stmaryrd}
-% stmaryrd is need to define \denotation
-
-\RequirePackage{pgffor}         % foreach
-
-
-% Example of options
-%
-% \DeclareOption{red}{\renewcommand{\wordcolour}{sharelatexcolour}}
-% \DeclareOption{blue}{\renewcommand{\wordcolour}{mybluecolour}}
-% \DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
-
-% The following line should be added after option setting
-% \ProcessOptions\relax
-
-%
-% Body of the package
-%
-
-%
-% TikZ commands
-%
+\RequirePackage{tkz-euclide}    % \tkzAxeXY
 
 % BEGIN: Speech bubble
 %
@@ -57,9 +21,10 @@
 % Callout with a sharp edge
 % https://tex.stackexchange.com/a/619672
 %
-% Enable sharp edge by adding the following command:
+% Enable sharp edge by adding the following command.
+% e.g.
 % \tikzset{/pgf/callout pointer sharp}
-\input{dhnamlib/calloutpointersharp}
+\input{\dhnamlibpackage{calloutpointersharp.tex}}
 % END: Speech bubble
 
 % BEGIN: Help grid
@@ -111,27 +76,3 @@
 % \newcommand{\rtd}{\radtodeg}  % a shortcut
 % \verb|\radtodeg{2}| = \radtodeg{2}
 % END: Radian to degree
-
-% BEGIN: citation placeholder
-% command \citeph just ignores an input
-\newcommand{\citeph}[1]{}
-% END: \citeph
-
-% BEGIN: \denotation
-% https://tex.stackexchange.com/questions/121605/macro-for-typesetting-semantic-denotations-linguistics
-\newcommand{\denotation}[2][]{
-  \left\llbracket #2 \right\rrbracket_{#1}
-}
-% END: \denotation
-
-% BEGIN: \dotimes
-% https://tex.stackexchange.com/a/16190
-\newcommand{\dotimes}[2]{
-  \foreach \i in {1,...,#1}{#2}
-}
-% END: \dotimes
-
-% % BEGIN: \comment
-% % https://tex.stackexchange.com/a/16190
-% \newcommand{\comment}[1]{}
-% % END: \comment
