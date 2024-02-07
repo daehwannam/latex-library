@@ -12,3 +12,12 @@
 % https://tex.stackexchange.com/a/5255
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
+
+% semi-colon bar
+% latex spacing example: https://www.overleaf.com/learn/latex/Spacing_in_math_mode#Reference_guide
+\DeclareMathOperator*{\scbar}{\!;}
+
+% \newcommand{\setsize}[1]{\left \mid #1 \right \mid}  % not working
+% \newcommand{\setsize}[1]{| #1 |}
+% \newcommand{\setsize}[1]{\mid #1 \mid}
+\newcommand{\setsize}[1]{\left \lvert #1 \right \rvert}
