@@ -1,0 +1,42 @@
+
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
+
+\RequirePackage{\dhnamlibpackage{iteration}}
+
+\RequirePackage{pgffor}         % \foreach
+
+
+% BEGIN: citation placeholder
+% command \citeph just ignores an input
+\newcommand{\citeph}[1]{}
+% END: \citeph
+
+
+% \citetseq: \citet for a sequence of arguments
+%
+% Example to process the last item in a list
+% https://tex.stackexchange.com/a/164130
+%
+\newcommand\citetseq[1]{%
+  \count@\z@
+  \@for\tmp:=#1\do{\advance\count@\@ne}%
+  \edef\xtmp{\ifcase\count@\or\or\ and\ \else, and\ \fi}%
+  \@for\tmp:=#1\do{%
+    \advance\count@\m@ne
+    \edef\tmp{%
+      \noexpand\citet{\expandafter\zap@space\tmp\@gobble{} \@empty}}%
+    \tmp
+    \ifnum\count@>\@ne, %
+    \else
+    \ifnum\count@=\@ne\xtmp
+    \fi\fi}}
+%
+% Output example:
+% - A
+% - A and B
+% - A, B, and C

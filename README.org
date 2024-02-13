@@ -7,26 +7,47 @@ PROJECT_PATH=$(realpath --relative-to="$BASE_DIR_PATH" latex-library)
 ln -s $PROJECT_PATH $BASE_DIR_PATH/dhnamlib
 #+end_src
 
+** Installing symbolic links with a prefix
+#+begin_src sh
+cd $BASE_DIR_PATH
+PREFIX=dhnamlib-
+./dhnamlib/install-symlinks.sh $PREFIX
+# The argument can be skipped, then the default prefix "dhnamlib-" is used as the prefix.
+#+end_src
+
 * Usage
 #+begin_src latex
+% import some
+\usepackage{dhnamlib/iteration}
+\usepackage{dhnamlib/math}
+% ...
+
+% import all
 \usepackage{dhnamlib/all}
 #+end_src
 
 ** Change the package path
 The default package path is "dhnamlib/"
-You can change the path by defining ~\dhnamlibpath~ before importing the dhnamlib package
+You can change the path by defining ~\dhnamlibpath~ before importing the dhnamlib package:
 
 #+begin_src latex
 % Using the default package path
-\renewcommand{\dhnamlibpath}{dhnamlib/}
+\newcommand{\dhnamlibpath}{dhnamlib/}
 \usepackage{dhnamlib/all}
 
 % Renaming ./dhnamlib to ./path/to/newdir
-\renewcommand{\dhnamlibpath}{path/to/newdir/}
-\usepackage{newpath/all}
+\newcommand{\dhnamlibpath}{path/to/newdir/}
+\usepackage{path/to/newdir/all}
 
 % Locating all files in the current directory (./),
 % then adding the prefix "dhnamlib-" to the all files
-\renewcommand{\dhnamlibpath}{dhnamlib-}
+\newcommand{\dhnamlibpath}{dhnamlib-}
 \usepackage{dhnamlib-all}
+#+end_src
+
+You can consistantly use the same command:
+
+#+begin_src latex
+\newcommand{\dhnamlibpath}{path/to/newdir//}
+\usepackage{\dhnamlibpath all}
 #+end_src
