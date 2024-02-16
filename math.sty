@@ -24,3 +24,25 @@
 % \newcommand{\setsize}[1]{| #1 |}
 % \newcommand{\setsize}[1]{\mid #1 \mid}
 \newcommand{\setsize}[1]{\left \lvert #1 \right \rvert}
+
+% Independence
+% https://tex.stackexchange.com/a/174134
+\newcommand*{\centernot}{%
+  \mathpalette\@centernot
+}
+\def\@centernot#1#2{%
+  \mathrel{%
+    \rlap{%
+      \settowidth\dimen@{$\m@th#1{#2}$}%
+      \kern.5\dimen@
+      \settowidth\dimen@{$\m@th#1=$}%
+      \kern-.5\dimen@
+      $\m@th#1\not$%
+    }%
+    {#2}%
+  }%
+}
+\makeatother
+
+\newcommand{\independent}{\perp\mkern-9.5mu\perp}
+\newcommand{\notindependent}{\centernot{\independent}}
