@@ -28,7 +28,11 @@
 % Enable sharp edge by adding the following command.
 % e.g.
 % \tikzset{/pgf/callout pointer sharp}
-\input{\dhnamlibpackage{calloutpointersharp.tex}}
+\@ifundefined{inputfilesuffix}{
+  % \newcommand{\inputfilesuffix}{.sty}
+  \newcommand{\inputfilesuffix}{}
+}{}
+\input{\dhnamlibpackage{calloutpointersharp.tex}\inputfilesuffix}
 % END: Speech bubble
 
 % BEGIN: Help grid
