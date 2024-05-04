@@ -1,0 +1,642 @@
+
+% Creating a simple Title Page in Beamer
+\documentclass{beamer}
+
+\newcommand{\dhnamlibpath}{dhnamlib/}
+\usepackage{\dhnamlibpath beamer-template/madrid-default}
+
+% Section: [Your First LaTeX Presentation–Title Page]
+% https://latex-beamer.com/tutorials/title-page/
+
+% * Title page details
+%   - you can use or doesn't use the optional text for the footer
+%     e.g \title[title text in the footer]{This is the title for your \LaTeX{} presentation}
+%     e.g \title{This is the title for your \LaTeX{} presentation}
+\title[title text in the footer]{This is the title for your \LaTeX{} presentation}
+\subtitle{This is the subtitle}
+
+% * Multiple authors
+%   - \and is required between authors' names
+%   - "~" is used to keep first and last names together
+
+% % authors only
+% \author{First~Author \and 
+%   Second~Author \and
+%   Third~Author \and
+%   Fourth~Author \and
+%   Fifth~Author}
+
+% % an author with an institution
+% \author{latex-beamer.com}
+% \institute{Online Beamer Tutorials}
+
+% authors and institutions
+\author[author text in the footer]{First~Author\inst{1} \and Second~Author~\inst{2} \and Third~Author~\inst{1}}
+\institute[institution text in the footer]{
+  \inst{1} Affiliation of the 1st author \and
+  \inst{2} Affiliation of the 2nd author}
+
+\date[date text in the footer]{\today}
+% \date{June 29, 2022}
+
+% Section: [Add and Position a Logo in Beamer]
+% https://latex-beamer.com/tutorials/logo-beamer/
+
+% % logo for every page
+% \logo{\includegraphics[width=2cm]{image/latex-logo.pdf}}
+
+% % logo only on title page
+% \titlegraphic{\includegraphics[width=2cm]{image/latex-logo.pdf}}
+
+% % multiple logos
+% \titlegraphic{
+%   \includegraphics[width=2cm]{image/latex-logo.pdf}
+%   \hspace{2cm}
+%   \includegraphics[width=2cm]{image/latex-logo.pdf}
+%   \hspace{2cm}
+%   \includegraphics[width=2cm]{image/latex-logo.pdf}
+% }
+
+% logo in a specific position
+% https://latex-beamer.com/tutorials/logo-beamer/#positioning
+\usepackage{tikz}
+% u can use "logo" instead of "titlegraphic" to display logo for every page
+\titlegraphic{ 
+  \begin{tikzpicture}[overlay,remember picture]
+    % "overlay,remember picture" creates an overlay above the current slide
+    \node[right=0.1cm] at (current page.150){
+      % logo at the left upper corner
+      % the logo is located 0.1cm right from the coordinate (current page.150)
+      \includegraphics[width=2cm]{image/latex-logo.pdf}};
+    \node[left=0.1cm] at (current page.30){
+      % logo at the right upper corner
+      \includegraphics[width=2cm]{image/latex-logo.pdf}};
+  \end{tikzpicture}
+}
+
+\begin{document}
+
+% Title page frame
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Section: [Create Table of Contents in Beamer]
+% https://latex-beamer.com/tutorials/table-of-contents/
+
+% Outline frame
+\begin{frame}{Outline or contents}
+  \tableofcontents
+  % \tableofcontents[hideallsubsections]  % 'hideallsubsections' hide all subsections
+  % \tableofcontents[pausesections] % show tableofcontents incrementally
+\end{frame}
+
+% Highlighting each section before it begins
+\AtBeginSection[ ]{
+  \begin{frame}{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\section{Problem statement}
+\section{Existing results}
+\subsection{Method 1}
+\subsection{Method 2}
+\subsection*{Method 3}  % \tableofcontents ignores \subsection*
+\section{Comparative study}
+\section*{References}  % \tableofcontents ignores \section*
+
+\begin{frame}
+% at least 1 frame is required
+% to enforce entries in the table of contents
+\end{frame}
+
+% Section: [8 Beamer Environments you Should be Familiar With!]
+% https://latex-beamer.com/tutorials/environments/
+
+% Section: [Lists in Beamer – Complete Guide]
+% https://latex-beamer.com/tutorials/lists/
+
+% Frame example
+\begin{frame}
+  % [options]
+  {This is the frame title}
+  {This is the frame subtitle}
+
+  This is a content
+
+  % list example
+  \begin{enumerate}
+  \item One
+    \begin{itemize}
+    \item Sub-category
+      \vspace{-0.1cm}  % space between items
+    \item Sub-category
+      \vspace{0.5cm}  % space between items
+    \item Sub-category
+    \end{itemize}
+  \item Two
+  \item Three
+  \end{enumerate}
+\end{frame}
+
+% % % Item spacing globally
+% % \setbeamertemplate{itemize/enumerate subbody begin}{\vspace{0.5cm}}
+% % \setbeamertemplate{itemize/enumerate subbody end}{\vspace{1cm}}
+
+% \begin{frame}
+%   \begin{itemize}
+%   \item Item one
+%     \begin{itemize}
+%     \item Sub item
+%     \end{itemize}
+%   \item Item two
+%   \end{itemize}
+% \end{frame}
+
+% numbered items over multiple frames
+\newcounter{currentenumi}
+\begin{frame}{Lists in multiple frames}{Frame 1}
+  \begin{enumerate}
+  \item Item 1
+  \item Item 2
+  \item Item 3
+    % Store the actual item number
+    \setcounter{currentenumi}{\theenumi}
+  \end{enumerate}
+\end{frame}
+\begin{frame}{Lists in multiple frames}{Frame 2}
+  \begin{enumerate}
+    % Use the previous stored item number
+    \setcounter{enumi}{\thecurrentenumi}
+  \item Item 4
+  \item Item 5
+  \end{enumerate}
+\end{frame}
+
+
+\newcommand{\titlepair}[2]{{\\ [-4ex] {\scriptsize #1} \\ [-0.0ex] #2}}
+
+\begin{frame}{\titlepair{Super Title}{Title}}
+    Some content
+\end{frame}
+
+
+\begin{frame}
+  \begin{itemize}
+  \item Item 1
+    \setbeamertemplate{itemize items}[default]
+  \item Item 2
+    \setbeamertemplate{itemize items}[circle]
+  \item Item 3
+    \setbeamertemplate{itemize items}[square]
+  \item Item 4.1
+  \item Item 4.2
+    \setbeamertemplate{itemize items}[ball]
+  \item Item 5
+  \end{itemize}
+\end{frame}
+
+% % Custom bullets for items
+% \usepackage{pifont}
+% % https://latex-beamer.com/tutorials/lists/#marker
+% \begin{frame}{Pifont symbols for Beamer lists}
+%   \begin{itemize}
+%   \item[\ding{51}] Code 51
+%   \item[\ding{56}] Code 56
+%   \item[\ding{43}] Code 43
+%   \item[\ding{118}] Code 118
+%   \item[\ding{170}] Code 170
+%   \end{itemize}
+% \end{frame}
+
+% \begin{frame}{Enumerate}
+% % Alphabet, Roman and Arabic style
+% % \usepackage{enumitem}
+% \begin{enumerate}[label={\alph*)}]
+%     \item Alphabet one
+%     \item Alphabet two
+% \end{enumerate}
+% \begin{enumerate}[label={\roman*.}]
+%     \item Roman number one
+%     \item Roman number two
+% \end{enumerate}
+% \begin{enumerate}[label={(\arabic*)}]
+%     \item Arabic number one
+%     \item Arabic number two
+% \end{enumerate}
+% \end{frame}
+
+% Section: [Create and Customize Columns in Beamer]
+% https://latex-beamer.com/tutorials/columns/
+
+\begin{frame}{Columns in beamer}
+  \begin{columns}
+    \column{0.6\textwidth}
+    \centering
+    This is column one with 0.75 text width.
+    \column{0.4\textwidth}
+    \centering
+    This is column two with 0.25 text width.
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Text and Image in beamer}
+  \begin{columns}
+    \column{0.4\textwidth}
+    This is an example of text and image in the same slide using columns environment.
+    \column{0.6\textwidth}
+    \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{image/latex-logo.pdf}
+      \caption{Here is the caption for the above image. }
+    \end{figure}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Vertical line between columns}
+  \begin{columns}
+    % Column 1
+    \begin{column}{0.49\textwidth}
+      \begin{itemize}
+      \item Input layer: 2 neurons.
+      \item Hidden layer: 5 neurons.
+      \item Output layer: 2 neurons.
+      \end{itemize}
+    \end{column}
+
+    % Column 2 (vertical line)
+    \begin{column}{.02\textwidth}
+      \rule{.1mm}{0.7\textheight}
+    \end{column}
+
+    % Column 3    
+    \begin{column}{0.49\textwidth}
+      \includegraphics[width=\textwidth]{image/latex-logo.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Vertical alignment}
+  \begin{columns}[T]  % T: top / c: center / b: bottom
+    % Column 1
+    \begin{column}{0.5\textwidth}
+      This is a neural network with two inputs and two outputs. It has the following parameters:
+      \begin{itemize}
+      \item Input layer: 2 neurons.
+      \item Hidden layer: 5 neurons.
+      \item Output layer: 2 neurons.
+      \end{itemize}
+      The neural network is drawn in \LaTeX{} using Ti\textit{k}Z package. Check latexdraw.com for more details.
+    \end{column}
+
+    % Column 2    
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\textwidth]{image/latex-logo.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% Section: [Your Guide to Beamer Blocks]
+% https://latex-beamer.com/tutorials/blocks/
+
+% Frame 1
+\begin{frame}{Basic Blocks}
+  \begin{block}{Standard Block}
+    This is a standard block.
+  \end{block}
+  \begin{alertblock}{Alert Message}
+    This block presents alert message.
+  \end{alertblock}
+  \begin{exampleblock}{An example of typesetting tool}
+    Example: MS Word, \LaTeX{}
+  \end{exampleblock}
+\end{frame}
+% Frame 2
+\begin{frame}{Mathematical Environment Blocks}
+  \begin{definition} 
+    This is a definition.
+  \end{definition}
+  
+  \begin{theorem} 
+    This is a theorem. 
+  \end{theorem}
+  
+  \begin{lemma} 
+    This is a proof idea.
+  \end{lemma}
+\end{frame}
+% Frame 3
+\begin{frame}{Mathematical Environment Blocks-Continued}
+  \begin{proof} 
+    This is a proof. 
+  \end{proof}
+  
+  \begin{corollary}
+    This is a corollary
+  \end{corollary}
+  
+  \begin{example}
+    This is an example 
+  \end{example}
+\end{frame}
+
+\begin{frame}[fragile]{Mathematical Environment}
+  % fragile is necessary to use \verb (verbatim) style inside a frame
+  \begin{Lemma} 
+    This is equivalent to \verb|lemma| block
+  \end{Lemma}  
+\end{frame}
+
+% % Block stytles
+% % [Default style]
+% \setbeamertemplate{blocks}[default]
+% % [Shadow mode of blocks]
+% \setbeamertemplate{blocks}[rounded][shadow=true]
+
+% % Change example block colors
+% % 1- Block title (background and text)
+% \setbeamercolor{block title example}{fg=white, bg=teal}
+% % 2- Block body (background and text)
+% \setbeamercolor{block body example}{ bg=teal!25}
+% 
+% % Change alert block colors
+% % 1- Block title (background and text)
+% \setbeamercolor{block title alerted}{fg=white, bg=orange}
+% % 2- Block body (background and text)
+% \setbeamercolor{block body alerted}{ bg=orange!25}
+% 
+% % Change standard block colors
+% % 1- Block title (background and text)
+% \setbeamercolor{block title}{bg=cyan, fg=white}
+% % 2- Block body (background)
+% \setbeamercolor{block body}{bg=cyan!10}
+
+% Section: [Beamer Themes — Full List]
+% https://latex-beamer.com/tutorials/beamer-themes/
+
+% Section: [Your Beamer Guide to Text Formatting]
+% https://latex-beamer.com/tutorials/text-formatting/
+
+% \usepackage[T1]{fontenc}  % it enables the combination of bold and italics fonts
+\begin{frame}{Bold, Italics and Underlining}
+  This is how \textbf{bold}, \textit{italized} and
+  \underline{underlined} text looks.
+  You can also combine them, like \textbf{\textit{bold
+      italized}}, \underline{\textbf{bold underlined}} and
+  \textit{\underline{italized underlined}}.
+  Finally, you can put
+  \textbf{\textit{\underline{everything together}}}. % this requires \usepackage[T1]{fontenc}
+\end{frame}
+
+% % select the KP Sans-Serif font
+% \usepackage[sfmath]{kpfonts}
+% \begin{frame}{Slanted and small caps text}
+%   This is \textsc{small caps text} and this is
+%   \textsl{slanted text}.\\~\\ 
+%   You can combine them, to produce \textsl{\textsc{small
+%       caps slanted text}} but also \textsc{\textbf{bold small caps}} or \textsl{\underline{underlined slanted text}}.
+% \end{frame}
+
+\begin{frame}{Emphasized text}
+  \emph{This} is emphasized and \textit{\emph{this} is
+    also emphasized, although in a different way.}
+\end{frame}
+
+% \usepackage{bm}
+\begin{frame}{Bold math example}
+  Let $\bm{u}$, $\bm{v}$ be vectors and $\bm{A}$ be a
+  matrix such that $\bm{Au}=\bm{v}$.
+  This is a bold integral:
+  \[
+    \bm{\int_{-\infty}^{\infty} e^{-x^2}\,dx=\sqrt{\pi} }
+  \]
+\end{frame}
+
+% \usepackage{ulem}
+% https://latex-beamer.com/tutorials/text-formatting/#text-decoration
+\begin{frame}{Text decorations provided by the
+    \texttt{ulem} package}
+  \uline{Underlined that breaks at the end of lines if
+    they are too too long because the author won’t stop
+    writing.} \\~\\
+  \uuline{Double-Underlined text} \\~\\
+  \uwave{Wavy-Underlined text} \\~\\
+  \sout{Strikethrough text} \\~\\
+  \xout{Struck with Hatching text} \\~\\
+  \dashuline{Dashed Underline text} \\~\\ 
+  \dotuline{Dotted Underline text} 
+\end{frame}
+
+% Change math font
+% https://latex-beamer.com/faq/change-math-font-style/
+% \usefonttheme[onlymath]{serif}
+\begin{frame}{Change Math font style}
+  \begin{block}{Pythagoras' theorem}
+    If you square the two shorter sides in a right-angled triangle and add them together, you get the same as when you square the longest side (the hypotenuse):
+    \[ x^2 + y^2 = z^2 \]
+    where $x$ and $y$ are the two shorter sides and $z$ is the hypotenuse.
+  \end{block}
+  \textbf{Equations in Beamer: }
+  \begin{align*}
+    f(x) &= x^2\\
+    g(x) &= \frac{1}{x}\\
+    F(x) &= \int^a_b \frac{1}{3}x^3
+  \end{align*}
+\end{frame}
+
+% How to change the font size on a given frame
+% https://latex-beamer.com/faq/font-size-frame/
+% \usepackage{lipsum}
+\begin{frame}{Frame with different font sizes and spacing }{size: 9pt, vskip=10pt}
+  \fontsize{9pt}{10pt}\selectfont
+  \lipsum[2]
+\end{frame}
+
+% Change text color
+% https://latex-beamer.com/tutorials/text-formatting/#text-color
+\begin{frame}{Colors in beamer}
+  {\color{blue} This is a blue block.}
+  {\color{red} And this is a red one.}
+  \begin{itemize}
+    \color{green}
+  \item This is a list.
+  \item And it is colored!
+  \end{itemize}
+
+  Here I want to \colorbox{yellow}{highlight some important text in yellow}
+  while leaving the rest untouched.
+\end{frame}
+
+% % Text alignment
+% % https://latex-beamer.com/tutorials/text-formatting/#text-alignment
+%
+% % provides the \justifying command
+% % \usepackage{ragged2e}
+% %
+% % Default alignment
+% \begin{frame}{Default beamer alignment}
+%   \lipsum[1]
+% \end{frame}
+% % Flushed right alignment
+% \begin{frame}{Flushed right}
+%   \begin{flushright}
+%     \lipsum[2]
+%   \end{flushright}
+% \end{frame}
+% % Centered alignment
+% \begin{frame}{Centered}
+%   \begin{center}
+%     \lipsum[3]
+%   \end{center}
+% \end{frame}
+% % Fully justified alignment
+% \begin{frame}{Fully justified}
+%   \justifying
+%   \lipsum[4]
+% \end{frame}
+
+% Section: [Creating Overlays in Beamer]
+% [Overlay 1]
+% https://latex-beamer.com/tutorials/overlays/
+\begin{frame}{Creating Overlays in Beamer}{Pause command}
+  \begin{itemize}
+  \item Shown from the first slide on.
+    \pause
+  \item Shown from the second slide on.
+    \pause
+  \item Shown from the third slide on.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Overlay specifications}
+  \textit<1,6>{
+    This will be italized text on the first slide and the sixth slide.}
+  \textbf<2-4>{
+    This will be bold text from the second slide to the fourth.}
+  \texttt<5->{
+    This will be typewriter text from the fifth slide on.}
+\end{frame}
+
+% [Overlay 2]
+% https://latex-beamer.com/tutorials/overlays/2/
+\begin{frame}{Onslide command}
+  This is shown on all slides.
+  \onslide <1-3>
+  \begin{itemize}
+  \item This list will only be shown
+  \item on slides 1, 2 and 3.
+  \end{itemize}
+  This text is also be shown on slides 1, 2 and 3.
+
+  \onslide<2>{This appears only on slide 2.}
+
+  This appears only on slide 1 to 3.
+
+  \onslide<1,4>
+  I appear just on slides 1 and 4.
+
+  \onslide <4-5>
+    \begin{itemize}
+    \item This list will only be shown
+    \item on slides 4 and 5.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Only command}
+  Text 1.
+  \only<2>{\color{red}}  This text is red only on slide 2.
+  Text 2.
+  \only<4>{{\color{blue}This blue text only appears on slide 4.}}
+  Text 3.
+\end{frame}
+
+\begin{frame}{Uncover command}
+  First sentence.
+  \uncover<2>{Second sentence.}
+  \uncover<3>{Third sentence.}
+  \uncover<4>{Fourth sentence.}
+\end{frame}
+
+\begin{frame}{Alternative command}
+  \alt<3>{This is only on slide 3!}{This is on all other slides except slide 3.}
+\end{frame}
+
+\begin{frame}{Temporal command}
+  \temporal<2>{before}{default}{after}
+  \onslide<3>{}
+\end{frame}
+
+% [Overlay 3]
+% https://latex-beamer.com/tutorials/overlays/3/
+
+% Overlay specifications for mathematical environments
+\begin{frame}{Overlay specifications Math environment}
+  \begin{definition}<1->
+    When something is repeated more than three times, we say it is spam
+  \end{definition}
+  \begin{example}<2->
+    An example of spam is: eggs, eggs, eggs
+  \end{example}
+  \begin{theorem}<3->
+    I don’t like spam!
+  \end{theorem}
+  \begin{proof}<5->
+    This proof is shown after the corollary.
+  \end{proof}
+  \begin{corollary}<4->
+    Spam is considered something bad
+  \end{corollary}
+\end{frame}
+
+% Overlay commands: \only, \alt, \visible, \uncover, \invisible
+% Overlay environments: onlyenv, altenv, visibleenv, uncoverenv, invisibleenv
+
+\begin{frame}{Overlayarea environment}
+  \begin{overlayarea}
+    {
+      \linewidth  % area width
+    }
+    {
+      10pt % area height
+    }
+    \only<1>{This text is shown on the first slide.}
+    \only<2>{And replaced by this one on the second.}
+    \only<3->{And finally set to this text for the rest of the slides.}
+    % Your content here
+  \end{overlayarea}
+\end{frame}
+
+% \begin{frame}{Changing images dynamically}
+%   \begin{frame}{Show three images sequentially}
+%     \includegraphics<1>{1.png}
+%     \includegraphics<2>{2.png}
+%     \includegraphics<3>{3.png}
+%   \end{frame}
+
+%   % \begin{frame}{Show three images sequentially}
+%   %   \includegraphics<1->{1.png}
+%   %   \includegraphics<2->{2.png}
+%   %   \includegraphics<3->{3.png}
+%   % \end{frame}
+% \end{frame}
+
+% Section: [Insert a GIF into LaTeX Beamer — Short guide]
+% https://latex-beamer.com/tutorials/gif-latex-beamer/
+
+% Section: [Beamer Code Listing — Syntax highlighter]
+% https://latex-beamer.com/tutorials/beamer-code/
+
+% Section: [Beamer Font: Change its Size, Family and style]
+% https://latex-beamer.com/tutorials/beamer-font/
+
+% Section: [Beamer Table – Full guide with examples]
+% https://latex-beamer.com/tutorials/beamer-table/
+
+% Section: [Figures in Beamer – A detailed tutorial]
+% https://latex-beamer.com/tutorials/beamer-figure/
+ 
+% Section: [How to create beautiful title slide in Beamer?]
+% https://latex-beamer.com/tutorials/beautiful-title-slide/
+
+\end{document}

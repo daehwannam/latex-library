@@ -4,7 +4,7 @@
 git clone https://github.com/daehwannam/latex-library.git latex-library
 BASE_DIR_PATH=path/to/base      # Change this
 PROJECT_PATH=$(realpath --relative-to="$BASE_DIR_PATH" latex-library)
-ln -s $PROJECT_PATH $BASE_DIR_PATH/dhnamlib
+ln -s $PROJECT_PATH/dhnamlib $BASE_DIR_PATH/dhnamlib
 #+end_src
 
 ** Installing symbolic links with a prefix
@@ -31,15 +31,23 @@ The default package path is "dhnamlib/"
 You can change the path by defining ~\dhnamlibpath~ before importing the dhnamlib package:
 
 #+begin_src latex
+\newcommand{\dhnamlibpath}{dhnamlib/}
+\usepackage{\dhnamlibpath all}
+#+end_src
+
+Other examples:
+
+#+begin_src latex
 % Using the default package path
 \newcommand{\dhnamlibpath}{dhnamlib/}
 \usepackage{dhnamlib/all}
+% or you can use \usepackage{\dhnamlibpath all}
 
 % Renaming ./dhnamlib to ./path/to/newdir
 \newcommand{\dhnamlibpath}{path/to/newdir/}
 \usepackage{path/to/newdir/all}
 
-% Locating all files in the current directory (./),
+% Locating all files (or their symbolic links) into the current directory (./),
 % then adding the prefix "dhnamlib-" to the all files
 \newcommand{\dhnamlibpath}{dhnamlib-}
 \usepackage{dhnamlib-all}

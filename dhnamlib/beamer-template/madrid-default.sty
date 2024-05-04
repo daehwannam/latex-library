@@ -1,0 +1,131 @@
+
+\RequirePackage[T1]{fontenc}  % it enables the combination of bold and italics fonts
+\RequirePackage{bm}  % it's used for 'bm' command
+\RequirePackage{ulem}  % it' necessary for uline and related commands
+
+\RequirePackage{lipsum}  % dummy text: https://latex-beamer.com/faq/font-size-frame/
+
+% Theme choice
+% \usetheme{default}
+% \usetheme{AnnArbor}
+% % \usecolortheme{crane}  % color theme is optional
+% \usecolortheme{beaver}  % color theme is optional
+% 
+% \usetheme{Warsaw}
+% \usetheme{CambridgeUS}
+\usetheme{Madrid}
+% \usetheme{Bergen}
+% \usetheme{Copenhagen}
+% \usetheme{Boadilla}
+
+% Hide navigation symbols
+% https://tex.stackexchange.com/a/447278
+\setbeamertemplate{navigation symbols}{}
+
+% Numbered figures
+% https://tex.stackexchange.com/a/127150
+\setbeamertemplate{caption}[numbered]
+
+% Bullet style
+% https://tex.stackexchange.com/a/11170
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[default]
+
+% Bullet style for \tableofcontents
+\setbeamertemplate{section in toc}[sections numbered]
+% \setbeamertemplate{sections/subsections in toc}[default]
+
+% Change theme font
+% https://latex-beamer.com/tutorials/beamer-font/#Font-Themes
+\usefonttheme{default}
+% \usefonttheme{professionalfonts}
+
+% Change math font
+% https://latex-beamer.com/faq/change-math-font-style/
+\usefonttheme[onlymath]{serif}
+
+% % Change line spacing
+% % https://latex-beamer.com/tutorials/text-formatting/#line-spacing
+% \linespread{1.3}
+
+% Redefining title style
+% https://tex.stackexchange.com/a/155686
+%
+% The orginal source can be found by
+% $ kpsewhich beamerinnerthemedefault.sty
+%
+% and replace "default" with "supdefault"
+
+\defbeamertemplate*{title page}{supdefault}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+  \centering
+  \vskip1em\par  % added by dhnam
+    \begin{beamercolorbox}[sep=8pt,center,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \vskip1em\par  % added by dhnam
+    \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+  \vfill
+}
+
+% Round title
+%
+% The orginal source can be found by
+% $ kpsewhich beamerinnerthemerounded.sty
+%
+% and replace "default" with "supdefault"
+%
+% \DeclareOptionBeamer{shadow}[true]{\def\beamer@themerounded@shadow{#1}}
+% \ExecuteOptionsBeamer{shadow=false}
+% \ProcessOptionsBeamer
+% \setbeamertemplate{title page}[default][colsep=-4bp,rounded=true,shadow=\beamer@themerounded@shadow]
+\setbeamertemplate{title page}[supdefault][colsep=-4bp,rounded=true]
+
+% Change item bullet style in the table of contents
+% https://tex.stackexchange.com/questions/8011/changing-color-and-bullets-in-beamers-table-of-contents
+%
+% The orginal source can be found by
+% $ kpsewhich beamerinnerthemedefault.sty
+%
+% \defbeamertemplateparent{sections/subsections in toc}{section in toc,subsection in toc,subsubsection in toc}{}
+% \defbeamertemplateparent{sections/subsections in toc shaded}{section in toc shaded,subsection in toc shaded,subsubsection in toc shaded}[1][20]{[#1]}
+%
+% \setbeamertemplate{subsection in toc}[ball]
+
+% Change item bullet style in the table of contents as "circle"
+% https://tex.stackexchange.com/a/52126
+% \setbeamertemplate{subsection in toc}
+%   {\leavevmode\leftskip=2em\textcolor{beamer@blendedblue}{$\bullet$}\hskip1em\inserttocsubsection\par}
+\setbeamertemplate{subsection in toc}
+  {\leavevmode\leftskip=2em\color{beamer@blendedblue}$\bullet$\hskip1em\inserttocsubsection\par}
+
+% Change item bullet style in frames
+% https://latex-beamer.com/tutorials/lists/
+\setbeamertemplate{itemize items}[circle]
+
+% Section: [Your First LaTeX Presentation–Title Page]
+% https://latex-beamer.com/tutorials/title-page/
+
+% * Title page details
+%   - you can use or doesn't use the optional text for the footer
+%     e.g \title[title text in the footer]{This is the title for your \LaTeX{} presentation}
+%     e.g \title{This is the title for your \LaTeX{} presentation}
