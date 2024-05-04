@@ -1,4 +1,15 @@
 
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
+
+% Font size for beamer
+% https://tex.stackexchange.com/questions/314493/how-do-i-increase-the-default-font-size-of-all-slides-in-beamer
+% https://stackoverflow.com/questions/2054557/best-font-size-for-latex-beamer
+
 \RequirePackage[T1]{fontenc}  % it enables the combination of bold and italics fonts
 \RequirePackage{bm}  % it's used for 'bm' command
 \RequirePackage{ulem}  % it' necessary for uline and related commands
@@ -121,11 +132,3 @@
 % Change item bullet style in frames
 % https://latex-beamer.com/tutorials/lists/
 \setbeamertemplate{itemize items}[circle]
-
-% Section: [Your First LaTeX Presentation–Title Page]
-% https://latex-beamer.com/tutorials/title-page/
-
-% * Title page details
-%   - you can use or doesn't use the optional text for the footer
-%     e.g \title[title text in the footer]{This is the title for your \LaTeX{} presentation}
-%     e.g \title{This is the title for your \LaTeX{} presentation}
