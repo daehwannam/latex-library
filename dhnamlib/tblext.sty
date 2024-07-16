@@ -1,0 +1,47 @@
+
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
+
+% Table Extension package
+
+
+% Specifying the minimum width of a colum for tabular
+% https://tex.stackexchange.com/a/478055
+\RequirePackage{array,calc,collcell}
+
+\newlength{\fwlen}
+
+\newcommand{\NewMinLenColTypeC}[1]{
+  \newcolumntype{#1}[1]{>{\setlength{\fwlen}{#1}\collectcell\fixedCwidth}c<{\endcollectcell}}
+  \makeatletter
+  \newcommand{\fixedCwidth}[1]{\setlength{\@tempdima}{\widthof{#1}}\ifdim\@tempdima>\fwlen #1\else\setlength{\@tempdimb}{(\fwlen-\@tempdima)/2}\rule{\@tempdimb}{0pt}#1\rule{\@tempdimb}{0pt}\fi}
+  \makeatother
+}
+
+\newcommand{\NewMinLenColTypeL}[1]{
+  \newcolumntype{#1}[1]{>{\setlength{\fwlen}{#1}\collectcell\fixedLwidth}l<{\endcollectcell}}
+  \makeatletter
+  \newcommand{\fixedLwidth}[1]{\setlength{\@tempdima}{\widthof{#1}}\ifdim\@tempdima>\fwlen #1\else\setlength{\@tempdimb}{\fwlen-\@tempdima}#1\rule{\@tempdimb}{0pt}\fi}
+  \makeatother
+}
+
+\newcommand{\NewMinLenColTypeR}[1]{
+  \newcolumntype{#1}[1]{>{\setlength{\fwlen}{#1}\collectcell\fixedRwidth}r<{\endcollectcell}}
+  \makeatletter
+  \newcommand{\fixedRwidth}[1]{\setlength{\@tempdima}{\widthof{#1}}\ifdim\@tempdima>\fwlen #1\else\setlength{\@tempdimb}{\fwlen-\@tempdima}\rule{\@tempdimb}{0pt}#1\fi}
+  \makeatother
+}
+
+% Example
+% \NewMinLenColTypeC{C}
+% \NewMinLenColTypeL{L}
+% \NewMinLenColTypeR{R}
+%
+% \begin{tabular}{|C{1cm}|L{1cm}|R{1cm}|C{1cm}|C{1cm}|}
+% 123 &   123 &   123 &   123 & This is a wider column\\
+% 5   &   6   &   6   &   8 & 8
+% \end{tabular}

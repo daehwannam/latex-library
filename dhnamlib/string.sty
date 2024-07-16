@@ -1,0 +1,36 @@
+
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
+
+%
+% String commands
+%
+
+\RequirePackage{xparse}
+
+% \replace
+% https://tex.stackexchange.com/a/213952
+%
+% Example:
+% \replace{Text should be replaced here, here and here}{here}{Latex}
+%
+
+\ExplSyntaxOn
+\NewDocumentCommand{\replace}{mmm}
+ {
+  \marian_replace:nnn {#1} {#2} {#3}
+ }
+
+\tl_new:N \l_marian_input_text_tl
+
+\cs_new_protected:Npn \marian_replace:nnn #1 #2 #3
+ {
+  \tl_set:Nn \l_marian_input_text_tl { #1 }
+  \tl_replace_all:Nnn \l_marian_input_text_tl { #2 } { #3 }
+  \tl_use:N \l_marian_input_text_tl
+ }
+\ExplSyntaxOff
