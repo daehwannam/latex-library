@@ -16,25 +16,32 @@
 \newlength{\fwlen}
 
 \newcommand{\NewMinLenColTypeC}[1]{
-  \newcolumntype{#1}[1]{>{\setlength{\fwlen}{#1}\collectcell\fixedCwidth}c<{\endcollectcell}}
+  \newcolumntype{#1}[1]{>{\setlength{\fwlen}{##1}\collectcell\fixedCwidth}c<{\endcollectcell}}
   \makeatletter
-  \newcommand{\fixedCwidth}[1]{\setlength{\@tempdima}{\widthof{#1}}\ifdim\@tempdima>\fwlen #1\else\setlength{\@tempdimb}{(\fwlen-\@tempdima)/2}\rule{\@tempdimb}{0pt}#1\rule{\@tempdimb}{0pt}\fi}
+  \newcommand{\fixedCwidth}[1]{\setlength{\@tempdima}{\widthof{##1}}\ifdim\@tempdima>\fwlen ##1\else\setlength{\@tempdimb}{(\fwlen-\@tempdima)/2}\rule{\@tempdimb}{0pt}##1\rule{\@tempdimb}{0pt}\fi}
   \makeatother
 }
 
 \newcommand{\NewMinLenColTypeL}[1]{
-  \newcolumntype{#1}[1]{>{\setlength{\fwlen}{#1}\collectcell\fixedLwidth}l<{\endcollectcell}}
+  \newcolumntype{#1}[1]{>{\setlength{\fwlen}{##1}\collectcell\fixedLwidth}l<{\endcollectcell}}
   \makeatletter
-  \newcommand{\fixedLwidth}[1]{\setlength{\@tempdima}{\widthof{#1}}\ifdim\@tempdima>\fwlen #1\else\setlength{\@tempdimb}{\fwlen-\@tempdima}#1\rule{\@tempdimb}{0pt}\fi}
+  \newcommand{\fixedLwidth}[1]{\setlength{\@tempdima}{\widthof{##1}}\ifdim\@tempdima>\fwlen ##1\else\setlength{\@tempdimb}{\fwlen-\@tempdima}##1\rule{\@tempdimb}{0pt}\fi}
   \makeatother
 }
 
 \newcommand{\NewMinLenColTypeR}[1]{
-  \newcolumntype{#1}[1]{>{\setlength{\fwlen}{#1}\collectcell\fixedRwidth}r<{\endcollectcell}}
+  \newcolumntype{#1}[1]{>{\setlength{\fwlen}{##1}\collectcell\fixedRwidth}r<{\endcollectcell}}
   \makeatletter
-  \newcommand{\fixedRwidth}[1]{\setlength{\@tempdima}{\widthof{#1}}\ifdim\@tempdima>\fwlen #1\else\setlength{\@tempdimb}{\fwlen-\@tempdima}\rule{\@tempdimb}{0pt}#1\fi}
+  \newcommand{\fixedRwidth}[1]{\setlength{\@tempdima}{\widthof{##1}}\ifdim\@tempdima>\fwlen ##1\else\setlength{\@tempdimb}{\fwlen-\@tempdima}\rule{\@tempdimb}{0pt}##1\fi}
   \makeatother
 }
+
+% Note
+% When \newcommand makes a template that includes another \newcommand or \newcolumntype,
+% the template includes # representations, such as #1 or #2, that should be distinguished with the arguments of outer \newcommand.
+% Therefore, the # representations, which are not arguments, should be replaced with ##.
+%
+% https://tex.stackexchange.com/a/416775
 
 % Example
 % \NewMinLenColTypeC{C}
