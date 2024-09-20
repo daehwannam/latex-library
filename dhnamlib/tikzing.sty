@@ -84,3 +84,60 @@
 % \newcommand{\rtd}{\radtodeg}  % a shortcut
 % \verb|\radtodeg{2}| = \radtodeg{2}
 % END: Radian to degree
+
+
+% BEGIN
+% Text at the top left of another node
+% https://tex.stackexchange.com/a/4986
+
+% Optional parameter of \newcommand
+% https://www.overleaf.com/learn/latex/Commands
+%
+% [] means the default value of an optional parameter is empty.
+% The optional parameter is #1.
+
+\newcommand{\topLeftLabel}[3][]{
+  \node[above right] (#1) at (#2.north west){
+    #3
+  }
+}
+\newcommand{\topCenterLabel}[3][]{
+  \node[above] (#1) at (#2.north){
+    #3
+  }
+}
+% END
+
+
+% BEGIN
+% Database figure
+% https://tex.stackexchange.com/a/442994
+%
+% Example
+% \begin{tikzpicture}[line width=1pt]
+%   \node[database,label=below:some label] {};
+%   \node[database,label=below:some label,database radius=1cm,database segment height=0.5cm] at (3,0) {};
+% \end{tikzpicture}
+
+\makeatletter
+\tikzset{
+  database/.style={
+    path picture={
+      \draw (0, 1.5*\database@segmentheight) circle [x radius=\database@radius,y radius=\database@aspectratio*\database@radius];
+      \draw (-\database@radius, 0.5*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius];
+      \draw (-\database@radius,-0.5*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius];
+      \draw (-\database@radius,1.5*\database@segmentheight) -- ++(0,-3*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius] -- ++(0,3*\database@segmentheight);
+    },
+    minimum width=2*\database@radius + \pgflinewidth,
+    minimum height=3*\database@segmentheight + 2*\database@aspectratio*\database@radius + \pgflinewidth,
+  },
+  database segment height/.store in=\database@segmentheight,
+  database radius/.store in=\database@radius,
+  database aspect ratio/.store in=\database@aspectratio,
+  database segment height=0.1cm,
+  database radius=0.25cm,
+  database aspect ratio=0.35,
+}
+\makeatother
+
+% END
