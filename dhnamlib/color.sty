@@ -1,0 +1,14 @@
+
+
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
+
+\RequirePackage{soul}  % \setulcolor, \ul, \hl, \sethlcolor
+
+% Thin colorbox
+% https://tex.stackexchange.com/a/23682
+\newcommand{\hlbox}[2]{\setlength{\fboxsep}{0pt}\colorbox{#1}{#2}} % emphasize expansion
