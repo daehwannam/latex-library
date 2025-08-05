@@ -8,7 +8,23 @@
 }{}
 
 \RequirePackage{soul}  % \setulcolor, \ul, \hl, \sethlcolor
+\RequirePackage{xcolor}
+\RequirePackage{environ}
+
 
 % Thin colorbox
 % https://tex.stackexchange.com/a/23682
 \newcommand{\hlbox}[2]{\setlength{\fboxsep}{0pt}\colorbox{#1}{#2}} % emphasize expansion
+
+% colorsection environment
+%
+% Example:
+%   \begin{colorsection}{blue}
+%   This block of text is blue.
+%   \end{colorsection}
+
+\NewEnviron{colorsection}[1]{%
+  {\color{#1}%
+    \BODY
+  }%
+}
