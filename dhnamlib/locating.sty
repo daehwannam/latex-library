@@ -1,0 +1,27 @@
+
+
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
+
+\RequirePackage{afterpage}  % \afterpage
+
+
+% \newcommand{\clearafter}[1]{
+%   {
+%     % \clearpage
+%     #1
+%     \clearpage
+%   }
+% }
+
+\newcommand{\solelyinpage}[1]{
+  \afterpage{
+    % \clearpage
+    #1
+    \clearpage
+  }
+}
