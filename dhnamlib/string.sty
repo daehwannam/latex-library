@@ -34,3 +34,51 @@
   \tl_use:N \l_marian_input_text_tl
  }
 \ExplSyntaxOff
+
+
+% \camelToSnake
+%
+% Example:
+% \camelToSnake{someCamelCase}  % Output: some_camel_case
+%
+\ExplSyntaxOn
+\tl_new:N \l_nam_case_tl
+
+\NewDocumentCommand{\camelToSnake}{m}
+ {
+  \tl_set:Nn \l_nam_case_tl { #1 }
+
+  % 1. Insert underscore before uppercase letters
+  \regex_replace_all:nnN { ([A-Z]) } { _\1 } \l_nam_case_tl
+
+  % 2. Convert to lowercase (using the most primitive expand-safe command)
+  \tl_set:Nx \l_nam_case_tl { \tl_to_lower:n { \l_nam_case_tl } }
+
+  % 3. Remove leading underscore
+  \regex_replace_once:nnN { ^_ } { } \l_nam_case_tl
+
+  % 4. Escape underscores for text mode output ( _ -> \_ )
+  % This prevents the "Missing $ inserted" error.
+  \regex_replace_all:nnN { _ } { \c{_} } \l_nam_case_tl
+
+  \tl_use:N \l_nam_case_tl
+ }
+
+% Fallback for older expl3 versions
+\cs_if_exist:NF \tl_to_lower:n {
+    \cs_new_eq:NN \tl_to_lower:n \tl_lower_case:n
+}
+\ExplSyntaxOff
+
+% \argsWithSpace
+%
+% Example: $\argsWithSpace[\:]{u, v, w}$  %  Output: u v w
+%
+\ExplSyntaxOn
+\NewDocumentCommand{\argsWithSpace}{O{\:} m}
+ {
+  \seq_set_from_clist:Nn \l_tmpa_seq { #2 } % items to a sequence
+  \seq_use:Nn \l_tmpa_seq { #1 }           % insert space (\,) between items in the sequence
+ }
+\ExplSyntaxOff
+

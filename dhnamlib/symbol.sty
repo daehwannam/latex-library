@@ -1,0 +1,18 @@
+
+\@ifundefined{dhnamlibbasedeclaration}{
+  \@ifundefined{dhnamlibpath}{
+    \newcommand{\dhnamlibpath}{dhnamlib/}
+  }{}
+  \RequirePackage{\dhnamlibpath base}
+}{}
+
+\RequirePackage{graphicx}       % \scalebox
+
+%
+% Symbol commands
+%
+
+% \midcirc
+%
+% Example: \(\ifoth{x}{condition}{y}\)  % Output: x if condition; otherwise, y
+\newcommand{\midcirc}{\mathbin{\vcenter{\hbox{\scalebox{0.83}{\(\bigcirc\)}}}}}

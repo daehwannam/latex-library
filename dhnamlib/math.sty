@@ -13,6 +13,15 @@
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
+% \argtop
+%
+% Example: \argtop{k}_{i \in {1,\dots,n}} f(i)
+\newcommand{\argtop}[1]{\operatorname*{arg\,top-\mathit{#1}}}
+\newcommand{\argtopl}[1]{\operatorname*{arg\,top-#1}\limits}
+
+\newcommand{\maxl}{\max\limits}
+\newcommand{\minl}{\min\limits}
+
 % semi-colon bar
 % latex spacing example: https://www.overleaf.com/learn/latex/Spacing_in_math_mode#Reference_guide
 % \DeclareMathOperator*{\scbar}{\!;}
@@ -25,6 +34,8 @@
 % \newcommand{\setsize}[1]{\mid #1 \mid}
 \newcommand{\setsize}[1]{\left\lvert #1\right\rvert}
 \newcommand{\setmake}[1]{\left\{ #1\right\}}
+\newcommand{\setunion}[2]{#1 \cup #2}
+\newcommand{\setadd}[2]{\setunion{#1}{\setmake{#2}}}
 
 % Independence
 % https://tex.stackexchange.com/a/174134
@@ -47,3 +58,21 @@
 
 \newcommand{\independent}{\perp\mkern-9.5mu\perp}
 \newcommand{\notindependent}{\centernot{\independent}}
+
+% \toward
+\newcommand{\toward}{\textrm{ to }}
+\newcommand{\fromone}[1]{1 \toward #1}
+
+% \ifoth
+%
+% Example: \(\ifoth{x}{condition}{y}\)  % Output: x if condition; otherwise, y
+\newcommand{\ifoth}[3]{#1 \text{ if } #2; \text{ otherwise, } #3}
+\newcommand{\caseifoth}[3]{\begin{cases}#2, & \text{if } #1 \\ #3, & \text{otherwise} \end{cases}}
+\newcommand{\suchthat}[2]{#1 \text{ s.t. } #2}
+\newcommand{\existsst}[2]{\exists \suchthat{#1}{#2}}
+\newcommand{\nexistsst}[2]{\nexists \suchthat{#1}{#2}}
+
+% % aligning
+% \newcommand{\aligning}[1]{\begin{aligned} #1 \end{aligned}}
+% \newcommand{\doublebackslash}{\\}
+% \newcommand{\ampersand}{&}
