@@ -82,3 +82,58 @@
  }
 \ExplSyntaxOff
 
+% \commaAnd, \serialAnd, \commaOr, \serialOr
+\ExplSyntaxOn
+
+% Declare shared internal variables
+\clist_new:N \l_@@_smart_clist
+\int_new:N   \l_@@_clist_len
+
+% Universal backend function
+% #1: input comma-separated list
+% #2: separator for exactly 2 items (e.g., '~and~' or '~or~')
+% #3: separator for the final pair when 3+ items (e.g., '~and~', ',~and~', '~or~', ',~or~')
+\cs_new_protected:Nn \@@_process_list:nnn
+  {
+    \clist_set:Nn \l_@@_smart_clist {#1}
+    \int_set:Nn \l_@@_clist_len { \clist_count:N \l_@@_smart_clist }
+
+    \int_case:nnF { \l_@@_clist_len }
+      {
+        { 0 } { } % Empty input
+        { 1 } { \clist_use:Nn \l_@@_smart_clist { } }
+        { 2 } { \clist_use:Nn \l_@@_smart_clist {#2} }
+      }
+      {
+        % 3+ items: Join items with ", " and use #3 for the final pair
+        \clist_use:Nnnn \l_@@_smart_clist { ,~ } { ,~ } {#3}
+      }
+  }
+
+% --- Public Interface Commands ---
+
+% Example: \commaAnd{x, y, z}  % Output: x, y and z
+\NewDocumentCommand{\commaAnd}{m}
+  {
+    \@@_process_list:nnn {#1} { ~and~ } { ~and~ }
+  }
+
+% Example: \serialAnd{x, y, z} % Output: x, y, and z
+\NewDocumentCommand{\serialAnd}{m}
+  {
+    \@@_process_list:nnn {#1} { ~and~ } { ,~and~ }
+  }
+
+% Example: \commaOr{x, y, z}   % Output: x, y or z
+\NewDocumentCommand{\commaOr}{m}
+  {
+    \@@_process_list:nnn {#1} { ~or~ } { ~or~ }
+  }
+
+% Example: \serialOr{x, y, z}  % Output: x, y, or z
+\NewDocumentCommand{\serialOr}{m}
+  {
+    \@@_process_list:nnn {#1} { ~or~ } { ,~or~ }
+  }
+
+\ExplSyntaxOff
